@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Garrett Segura | Offensive Security</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+
+--bg:#0d1117;
+--bg2:#161b22;
+--text:#c9d1d9;
+--blue:#58a6ff;
+--border:#30363d;
+--green:#3fb950;
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:"JetBrains Mono",monospace;
+background:var(--bg);
+color:var(--text);
+line-height:1.7;
+
+}
+
+header{
+
+padding:90px 10%;
+border-bottom:1px solid var(--border);
+
+}
+
+h1{
+
+font-size:3rem;
+color:white;
+margin-bottom:10px;
+
+}
+
+.subtitle{
+
+color:var(--blue);
+margin-bottom:30px;
+
+}
+
+.hero{
+
+max-width:850px;
+
+}
+
+.hero p{
+
+margin-bottom:20px;
+
+}
+
+nav{
+
+margin-top:40px;
+
+}
+
+nav a{
+
+text-decoration:none;
+color:var(--text);
+margin-right:25px;
+transition:.2s;
+
+}
+
+nav a:hover{
+
+color:var(--blue);
+
+}
+
+section{
+
+padding:80px 10%;
+
+}
+
+.section-title{
+
+font-size:2rem;
+margin-bottom:30px;
+color:white;
+
+}
+
+.cards{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+
+}
+
+.card{
+
+background:var(--bg2);
+padding:25px;
+border:1px solid var(--border);
+border-radius:10px;
+transition:.2s;
+
+}
+
+.card:hover{
+
+border-color:var(--blue);
+transform:translateY(-4px);
+
+}
+
+.card h3{
+
+margin-bottom:10px;
+color:white;
+
+}
+
+.tag{
+
+display:inline-block;
+padding:3px 10px;
+border-radius:20px;
+background:#1f2937;
+color:var(--blue);
+font-size:.8rem;
+margin-right:6px;
+margin-top:10px;
+
+}
+
+footer{
+
+text-align:center;
+padding:50px;
+border-top:1px solid var(--border);
+color:#888;
+
+}
+
+.terminal{
+
+background:black;
+padding:20px;
+border-radius:10px;
+margin-top:35px;
+overflow:auto;
+font-size:.95rem;
+
+}
+
+.green{
+
+color:var(--green);
+
+}
+
+.blue{
+
+color:var(--blue);
+
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<div class="hero">
+
+<h1>Garrett Segura</h1>
+
+<div class="subtitle">
+Offensive Security • Reverse Engineering • Capture the Flag
+</div>
+
+<p>
+Welcome to my corner of the internet.
+</p>
+
+<p>
+I'm passionate about offensive security, Active Directory, exploit development,
+reverse engineering, binary analysis, and automation. This site serves as both a
+knowledge base and a collection of writeups documenting my journey through
+Hack The Box, OffSec labs, HackSmarter challenges, and other CTF platforms.
+</p>
+
+<div class="terminal">
+<span class="green">$</span> whoami<br>
+garrett<br><br>
+
+<span class="green">$</span> interests<br>
+<span class="blue">
+active-directory exploit-dev reverse-engineering malware-analysis python go linux windows ctf
+</span>
+</div>
+
+<nav>
+
+<a href="#writeups">Writeups</a>
+<a href="#projects">Projects</a>
+<a href="#about">About</a>
+<a href="https://github.com/">GitHub</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<section id="writeups">
+
+<h2 class="section-title">Latest Writeups</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Hack The Box</h3>
+
+<p>
+Windows, Linux, Active Directory, seasonal challenges and Sherlocks.
+</p>
+
+<span class="tag">HTB</span>
+<span class="tag">AD</span>
+<span class="tag">Windows</span>
+
+</div>
+
+<div class="card">
+
+<h3>OffSec</h3>
+
+<p>
+PWK-style machines, privilege escalation, enumeration, and reporting.
+</p>
+
+<span class="tag">OSCP</span>
+<span class="tag">Linux</span>
+
+</div>
+
+<div class="card">
+
+<h3>HackSmarter</h3>
+
+<p>
+Community labs and challenge writeups.
+</p>
+
+<span class="tag">CTF</span>
+<span class="tag">Web</span>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="projects">
+
+<h2 class="section-title">Projects</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Automation</h3>
+
+<p>
+Python and Go tooling for offensive security, enumeration, and workflow automation.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Research</h3>
+
+<p>
+Reverse engineering notes, exploit development, malware analysis, and Windows internals.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Scripts</h3>
+
+<p>
+Small utilities developed during CTFs and penetration tests.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="about">
+
+<h2 class="section-title">About</h2>
+
+<p>
+
+I enjoy breaking things to understand how they work.
+
+Most of what you'll find here comes directly from hours spent solving
+CTFs, experimenting in lab environments, and documenting lessons learned.
+Whenever possible, I try to explain not only <em>what</em> worked, but
+why it worked.
+
+</p>
+
+</section>
+
+<footer>
+
+Built with HTML & CSS • Hosted on GitHub Pages
+
+</footer>
+
+</body>
+</html>
