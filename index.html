@@ -4,231 +4,554 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Garrett Segura | Offensive Security</title>
+<title>grehaus | Offensive Security</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
 
---bg:#0d1117;
---bg2:#161b22;
---text:#c9d1d9;
---blue:#58a6ff;
---border:#30363d;
---green:#3fb950;
+    --bg:#111315;
+    --bg-light:#1a1d21;
+    --border:#2f343a;
+
+    --text:#e8e8e8;
+    --muted:#9da5b4;
+
+    --green:#6ee7b7;
+    --orange:#f59e0b;
+    --red:#ef4444;
 
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
 }
 
 body{
 
-font-family:"JetBrains Mono",monospace;
-background:var(--bg);
-color:var(--text);
-line-height:1.7;
+    background:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
+    var(--bg);
+
+    background-size:40px 40px;
+
+    color:var(--text);
+
+    font-family:"Inter",sans-serif;
+    line-height:1.7;
 
 }
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+code{
+    font-family:"JetBrains Mono",monospace;
+}
+
+.container{
+    width:min(1200px,92%);
+    margin:auto;
+}
+
+/**************************************************
+HEADER
+**************************************************/
 
 header{
 
-padding:90px 10%;
-border-bottom:1px solid var(--border);
+    min-height:100vh;
 
-}
-
-h1{
-
-font-size:3rem;
-color:white;
-margin-bottom:10px;
-
-}
-
-.subtitle{
-
-color:var(--blue);
-margin-bottom:30px;
+    display:flex;
+    align-items:center;
 
 }
 
 .hero{
 
-max-width:850px;
+    width:100%;
 
 }
 
-.hero p{
+.small{
 
-margin-bottom:20px;
+    font-family:"JetBrains Mono",monospace;
+    color:var(--green);
+    margin-bottom:15px;
 
 }
+
+h1{
+
+    font-size:4.5rem;
+    line-height:1;
+    margin-bottom:20px;
+
+}
+
+.highlight{
+
+    color:var(--orange);
+
+}
+
+.tagline{
+
+    font-size:1.2rem;
+    color:var(--muted);
+    max-width:700px;
+    margin-bottom:40px;
+
+}
+
+.buttons{
+
+    display:flex;
+    gap:15px;
+    margin-bottom:50px;
+    flex-wrap:wrap;
+
+}
+
+.btn{
+
+    border:1px solid var(--border);
+    background:var(--bg-light);
+    padding:14px 24px;
+    border-radius:8px;
+    transition:.25s;
+    font-weight:600;
+
+}
+
+.btn:hover{
+
+    border-color:var(--green);
+    color:var(--orange);
+    transform:translateY(-2px);
+
+}
+
+/**************************************************
+TERMINAL
+**************************************************/
+
+.terminal{
+
+    margin-top:25px;
+
+    background:#0d0f11;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    max-width:800px;
+
+    box-shadow:0 0 25px rgba(0,0,0,.3);
+
+}
+
+.bar{
+
+    background:#1d2024;
+
+    padding:12px;
+
+    display:flex;
+    gap:10px;
+
+}
+
+.dot{
+
+    width:12px;
+    height:12px;
+    border-radius:50%;
+
+}
+
+.red{background:#ef4444;}
+.yellow{background:#f59e0b;}
+.green{background:#22c55e;}
+
+.terminal pre{
+
+    padding:25px;
+
+    overflow-x:auto;
+
+    font-family:"JetBrains Mono",monospace;
+
+    font-size:.95rem;
+
+}
+
+.prompt{
+    color:var(--green);
+}
+
+.command{
+    color:var(--orange);
+}
+
+/**************************************************
+NAV
+**************************************************/
 
 nav{
 
-margin-top:40px;
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:100;
+
+    backdrop-filter:blur(12px);
+
+    background:rgba(17,19,21,.82);
+
+    border-bottom:1px solid var(--border);
 
 }
 
-nav a{
+.nav-inner{
 
-text-decoration:none;
-color:var(--text);
-margin-right:25px;
-transition:.2s;
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:20px 0;
+
+}
+
+.logo{
+
+    font-family:"JetBrains Mono",monospace;
+    color:var(--green);
+    font-weight:bold;
 
 }
 
-nav a:hover{
+.nav-links{
 
-color:var(--blue);
+    display:flex;
+    gap:35px;
 
 }
+
+.nav-links a{
+
+    position:relative;
+    color:var(--muted);
+
+}
+
+.nav-links a:hover{
+
+    color:white;
+
+}
+
+.nav-links a::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-8px;
+
+    left:0;
+
+    width:0;
+
+    height:2px;
+
+    background:var(--green);
+
+    transition:.25s;
+
+}
+
+.nav-links a:hover::after{
+
+    width:100%;
+
+}
+
+/**************************************************
+SECTION
+**************************************************/
 
 section{
 
-padding:80px 10%;
+    padding:90px 0;
 
 }
 
 .section-title{
 
-font-size:2rem;
-margin-bottom:30px;
-color:white;
+    font-size:2.2rem;
+
+    margin-bottom:40px;
 
 }
 
-.cards{
+.section-title span{
 
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
+    color:var(--orange);
+
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:25px;
 
 }
 
 .card{
 
-background:var(--bg2);
-padding:25px;
-border:1px solid var(--border);
-border-radius:10px;
-transition:.2s;
+    background:var(--bg-light);
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:28px;
+
+    transition:.25s;
 
 }
 
 .card:hover{
 
-border-color:var(--blue);
-transform:translateY(-4px);
+    transform:translateY(-5px);
+
+    border-color:var(--green);
 
 }
 
 .card h3{
 
-margin-bottom:10px;
-color:white;
+    margin-bottom:10px;
+
+}
+
+.card:hover h3{
+
+    color:var(--orange);
+
+}
+
+.tags{
+
+    margin-top:18px;
 
 }
 
 .tag{
 
-display:inline-block;
-padding:3px 10px;
-border-radius:20px;
-background:#1f2937;
-color:var(--blue);
-font-size:.8rem;
-margin-right:6px;
-margin-top:10px;
+    display:inline-block;
+
+    padding:6px 10px;
+
+    background:#25292d;
+
+    border-radius:6px;
+
+    font-size:.75rem;
+
+    margin:4px;
+
+    font-family:"JetBrains Mono",monospace;
+
+    color:var(--green);
 
 }
+
+/**************************************************
+ABOUT
+**************************************************/
+
+.about{
+
+    max-width:800px;
+
+    color:var(--muted);
+
+}
+
+.about strong{
+
+    color:white;
+
+}
+
+/**************************************************
+FOOTER
+**************************************************/
 
 footer{
 
-text-align:center;
-padding:50px;
-border-top:1px solid var(--border);
-color:#888;
+    border-top:1px solid var(--border);
+
+    margin-top:60px;
 
 }
 
-.terminal{
+.footer-terminal{
 
-background:black;
-padding:20px;
-border-radius:10px;
-margin-top:35px;
-overflow:auto;
-font-size:.95rem;
+    padding:40px 0;
 
-}
+    font-family:"JetBrains Mono",monospace;
 
-.green{
-
-color:var(--green);
+    color:var(--muted);
 
 }
 
-.blue{
+.footer-terminal .prompt{
 
-color:var(--blue);
+    color:var(--green);
+
+}
+
+/**************************************************
+RESPONSIVE
+**************************************************/
+
+@media(max-width:800px){
+
+    h1{
+
+        font-size:3rem;
+
+    }
+
+    .nav-links{
+
+        display:none;
+
+    }
 
 }
 
 </style>
 
 </head>
+
 <body>
-
-<header>
-
-<div class="hero">
-
-<h1>Garrett Segura</h1>
-
-<div class="subtitle">
-Offensive Security • Reverse Engineering • Capture the Flag
-</div>
-
-<p>
-Welcome to my corner of the internet.
-</p>
-
-<p>
-I'm passionate about offensive security, Active Directory, exploit development,
-reverse engineering, binary analysis, and automation. This site serves as both a
-knowledge base and a collection of writeups documenting my journey through
-Hack The Box, OffSec labs, HackSmarter challenges, and other CTF platforms.
-</p>
-
-<div class="terminal">
-<span class="green">$</span> whoami<br>
-garrett<br><br>
-
-<span class="green">$</span> interests<br>
-<span class="blue">
-active-directory exploit-dev reverse-engineering malware-analysis python go linux windows ctf
-</span>
-</div>
 
 <nav>
 
+<div class="container nav-inner">
+
+<div class="logo">
+
+grehaus
+
+</div>
+
+<div class="nav-links">
+
 <a href="#writeups">Writeups</a>
 <a href="#projects">Projects</a>
+<a href="#research">Research</a>
 <a href="#about">About</a>
-<a href="https://github.com/">GitHub</a>
+
+</div>
+
+</div>
 
 </nav>
+
+<header>
+
+<div class="container hero">
+
+<div class="small">
+
+$ whoami
+
+</div>
+
+<h1>
+
+Garrett <span class="highlight">Segura</span>
+
+</h1>
+
+<p class="tagline">
+
+Offensive Security • Reverse Engineering • Active Directory • Exploit Development
+
+<br><br>
+
+I enjoy breaking things to understand how they work. This site is a collection of writeups, research, notes, and tooling from platforms like Hack The Box, OffSec, HackSmarter, TryHackMe, and other security challenges.
+
+</p>
+
+<div class="buttons">
+
+<a class="btn" href="#writeups">Browse Writeups</a>
+
+<a class="btn" href="https://github.com/grehaus">GitHub</a>
+
+</div>
+
+<div class="terminal">
+
+<div class="bar">
+
+<div class="dot red"></div>
+<div class="dot yellow"></div>
+<div class="dot green"></div>
+
+</div>
+
+<pre><span class="prompt">$</span> <span class="command">whoami</span>
+garrett
+
+<span class="prompt">$</span> <span class="command">focus</span>
+
+• Active Directory
+• Windows Internals
+• Reverse Engineering
+• Binary Exploitation
+• Malware Analysis
+• Python Automation
+• Go Development
+
+<span class="prompt">$</span> <span class="command">ls writeups</span>
+
+HackTheBox/
+OffSec/
+HackSmarter/
+TryHackMe/
+Research/
+</pre>
+
+</div>
 
 </div>
 
@@ -236,21 +559,34 @@ active-directory exploit-dev reverse-engineering malware-analysis python go linu
 
 <section id="writeups">
 
-<h2 class="section-title">Latest Writeups</h2>
+<div class="container">
 
-<div class="cards">
+<h2 class="section-title">
+
+Latest <span>Writeups</span>
+
+</h2>
+
+<div class="grid">
 
 <div class="card">
 
 <h3>Hack The Box</h3>
 
 <p>
-Windows, Linux, Active Directory, seasonal challenges and Sherlocks.
+
+Windows, Linux, Active Directory, Sherlocks, and seasonal challenge writeups.
+
 </p>
 
+<div class="tags">
+
 <span class="tag">HTB</span>
-<span class="tag">AD</span>
 <span class="tag">Windows</span>
+<span class="tag">Linux</span>
+<span class="tag">AD</span>
+
+</div>
 
 </div>
 
@@ -259,11 +595,18 @@ Windows, Linux, Active Directory, seasonal challenges and Sherlocks.
 <h3>OffSec</h3>
 
 <p>
-PWK-style machines, privilege escalation, enumeration, and reporting.
+
+Enumeration, privilege escalation, exploitation methodology, and reporting notes.
+
 </p>
 
+<div class="tags">
+
 <span class="tag">OSCP</span>
+<span class="tag">Windows</span>
 <span class="tag">Linux</span>
+
+</div>
 
 </div>
 
@@ -272,11 +615,20 @@ PWK-style machines, privilege escalation, enumeration, and reporting.
 <h3>HackSmarter</h3>
 
 <p>
-Community labs and challenge writeups.
+
+Community labs, CTF walkthroughs, and research notes.
+
 </p>
 
-<span class="tag">CTF</span>
+<div class="tags">
+
 <span class="tag">Web</span>
+<span class="tag">CTF</span>
+<span class="tag">Cloud</span>
+
+</div>
+
+</div>
 
 </div>
 
@@ -286,16 +638,24 @@ Community labs and challenge writeups.
 
 <section id="projects">
 
-<h2 class="section-title">Projects</h2>
+<div class="container">
 
-<div class="cards">
+<h2 class="section-title">
+
+Projects <span>& Tools</span>
+
+</h2>
+
+<div class="grid">
 
 <div class="card">
 
 <h3>Automation</h3>
 
 <p>
-Python and Go tooling for offensive security, enumeration, and workflow automation.
+
+Custom scripts and tooling built during assessments and CTFs.
+
 </p>
 
 </div>
@@ -305,18 +665,24 @@ Python and Go tooling for offensive security, enumeration, and workflow automati
 <h3>Research</h3>
 
 <p>
-Reverse engineering notes, exploit development, malware analysis, and Windows internals.
+
+Reverse engineering, exploit development, Active Directory, and Windows internals.
+
 </p>
 
 </div>
 
 <div class="card">
 
-<h3>Scripts</h3>
+<h3>Notes</h3>
 
 <p>
-Small utilities developed during CTFs and penetration tests.
+
+A searchable knowledge base documenting techniques, tools, and lessons learned.
+
 </p>
+
+</div>
 
 </div>
 
@@ -326,26 +692,55 @@ Small utilities developed during CTFs and penetration tests.
 
 <section id="about">
 
-<h2 class="section-title">About</h2>
+<div class="container">
+
+<h2 class="section-title">
+
+About <span>Me</span>
+
+</h2>
+
+<div class="about">
 
 <p>
 
-I enjoy breaking things to understand how they work.
-
-Most of what you'll find here comes directly from hours spent solving
-CTFs, experimenting in lab environments, and documenting lessons learned.
-Whenever possible, I try to explain not only <em>what</em> worked, but
-why it worked.
+I'm a cybersecurity enthusiast focused on offensive security, reverse engineering, exploit development, and Active Directory. My goal is to document not only <strong>how</strong> an attack works, but <strong>why</strong> it works.
 
 </p>
+
+<br>
+
+<p>
+
+Every writeup emphasizes methodology over memorization, making it easier to revisit concepts and helping others understand the reasoning behind each step.
+
+</p>
+
+</div>
+
+</div>
 
 </section>
 
 <footer>
 
-Built with HTML & CSS • Hosted on GitHub Pages
+<div class="container footer-terminal">
+
+<span class="prompt">$</span> echo "Thanks for visiting."
+
+<br><br>
+
+Thanks for visiting.
+
+<br><br>
+
+© 2026 Garrett Segura
+
+</div>
 
 </footer>
 
 </body>
+
 </html>
+
