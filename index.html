@@ -61,23 +61,9 @@
 
   ::selection{ background: var(--sky-dim); color: var(--bright); }
 
-  /* ---------- boot sequence ---------- */
-  #boot{
-    position: fixed; inset: 0;
-    background: #0e0f11;
-    color: var(--sky);
-    font-size: 13px;
-    padding: 24px;
-    z-index: 999;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    transition: opacity .5s ease, visibility .5s ease;
-  }
-  #boot.hidden{ opacity: 0; visibility: hidden; pointer-events: none; }
-  #boot p{ margin: 0 0 4px; white-space: pre-wrap; }
-  #boot .ok{ color: var(--ochre); }
-  #boot .tag{ color: var(--orange); }
+  /* ---------- boot log (rendered inside the whoami terminal) ---------- */
+  .win-body .ok{ color: var(--ochre); }
+  .win-body .tag{ color: var(--orange); }
 
   /* ---------- scanline texture (subtle) ---------- */
   .crt::before{
@@ -177,7 +163,7 @@
   @keyframes blink{ 50%{ opacity:0; } }
 
   /* typing helpers */
-  .type-line{ opacity:0; }
+  .type-line{ opacity:0; transition: opacity .25s ease; }
   .type-line.done{ opacity:1; }
 
   /* ---------- ls -l listing ---------- */
@@ -248,21 +234,13 @@
 </head>
 <body>
 
-<div id="boot" aria-hidden="true">
-  <p><span class="ok">[ OK ]</span> Started <span class="tag">grehaus.dev</span></p>
-  <p><span class="ok">[ OK ]</span> Mounted /home/grehaus</p>
-  <p><span class="ok">[ OK ]</span> Loaded security-research module</p>
-  <p><span class="ok">[ OK ]</span> Loaded ctf-writeups module</p>
-  <p>Reached target <span class="tag">graphical.target</span> — welcome.</p>
-</div>
-
 <header class="statusbar">
   <span class="brand">grehaus</span>
   <nav>
     <a href="#whoami">whoami</a>
     <a href="#work">ls -l</a>
     <a href="#skills">htop</a>
-    <a href="#contact">contact</a>
+    <a href="#contact">mail</a>
   </nav>
   <div class="sys">
     <span class="dot-ochre">● online</span>
@@ -301,8 +279,8 @@
           <span class="ls-size">17</span>
           <span class="ls-name">
             <!-- EDIT: point at your write-ups index/repo -->
-            <a href="https://grehaus.github.io/writeups">writeups/</a>
-            <span class="ls-desc">CTF write-ups — web, pwn, crypto, forensics, labs</span>
+            <a href="#">writeups/</a>
+            <span class="ls-desc">CTF write-ups — web, pwn, crypto, forensics</span>
           </span>
         </div>
 
@@ -322,7 +300,7 @@
           <span class="ls-name">
             <!-- EDIT: point at your research page/blog -->
             <a href="#">research/</a>
-            <span class="ls-desc">Notes on vulns, exploits, and dead ends</span>
+            <span class="ls-desc">Notes on vulns, malware analysis, and dead ends</span>
           </span>
         </div>
 
@@ -341,7 +319,7 @@
           <span class="ls-size">1</span>
           <span class="ls-name">
             <!-- EDIT: your LinkedIn -->
-            <a href="linkedin.com/in/garrett-segura-1ba547252" target="_blank" rel="noopener">linkedin</a>
+            <a href="https://linkedin.com/in/grehaus" target="_blank" rel="noopener">linkedin</a>
             <span class="ls-desc">./linkedin → the professional version of this page</span>
           </span>
         </div>
@@ -354,7 +332,7 @@
     <div class="win crt">
       <div class="win-bar">
         <div class="win-dots"><span></span><span></span><span></span></div>
-        <div class="win-title">guest@grehaus: $ htop</div>
+        <div class="win-title">guest@grehaus: ~$ htop</div>
       </div>
       <div class="win-body">
         <div class="meter-row">
@@ -369,13 +347,13 @@
         </div>
         <div class="meter-row">
           <span class="meter-label">binary exploitation</span>
-          <div class="meter-track"><div class="meter-fill" data-pct="23" style="background:var(--orange)"></div></div>
-          <span class="meter-val">23%</span>
+          <div class="meter-track"><div class="meter-fill" data-pct="70" style="background:var(--orange)"></div></div>
+          <span class="meter-val">70%</span>
         </div>
         <div class="meter-row">
           <span class="meter-label">cryptography</span>
-          <div class="meter-track"><div class="meter-fill" data-pct="27" style="background:var(--sky)"></div></div>
-          <span class="meter-val">27%</span>
+          <div class="meter-track"><div class="meter-fill" data-pct="64" style="background:var(--sky)"></div></div>
+          <span class="meter-val">64%</span>
         </div>
         <div class="meter-row">
           <span class="meter-label">network security</span>
@@ -396,15 +374,16 @@
     <div class="win crt">
       <div class="win-bar">
         <div class="win-dots"><span></span><span></span><span></span></div>
-        <div class="win-title">guest@grehaus: $ mail</div>
+        <div class="win-title">guest@grehaus: ~$ mail</div>
       </div>
       <div class="win-body">
         <p class="row"><span class="prompt">mail -s "hello" grehaus</span></p>
         <p class="row out dim">Composing message... recipient reachable via the channels below.</p>
         <div class="contact-links">
           <!-- EDIT: swap in your real handles / email -->
+          <a href="mailto:garrett@grehaus.dev">email</a>
           <a href="https://github.com/grehaus" target="_blank" rel="noopener">github</a>
-          <a href="https://www.linkedin.com/in/garrett-segura-1ba547252/" target="_blank" rel="noopener">linkedin</a>
+          <a href="https://linkedin.com/in/grehaus" target="_blank" rel="noopener">linkedin</a>
           <a href="#">ctf profile</a>
         </div>
       </div>
@@ -428,17 +407,16 @@
   tick(); setInterval(tick, 1000);
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // boot sequence: hide after a short beat (skip entirely if reduced motion)
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const boot = document.getElementById('boot');
-  if (reduceMotion) {
-    boot.classList.add('hidden');
-  } else {
-    setTimeout(() => boot.classList.add('hidden'), 1400);
-  }
 
-  // typed terminal content for #whoami
+  // typed terminal content for #whoami — boot log runs first, then the prompts
   const lines = [
+    { type: 'boot', html: '<span class="ok">[ OK ]</span> Started <span class="tag">grehaus.dev</span>' },
+    { type: 'boot', html: '<span class="ok">[ OK ]</span> Mounted /home/grehaus' },
+    { type: 'boot', html: '<span class="ok">[ OK ]</span> Loaded security-research module' },
+    { type: 'boot', html: '<span class="ok">[ OK ]</span> Loaded ctf-writeups module' },
+    { type: 'boot', html: 'Reached target <span class="tag">graphical.target</span> — welcome.' },
+    { type: 'gap' },
     { type: 'cmd', text: 'whoami' },
     { type: 'out', text: 'Garrett Segura (grehaus)', cls: 'bright' },
     { type: 'gap' },
@@ -458,6 +436,9 @@
       p.className = 'row';
       if (l.type === 'cmd') {
         p.innerHTML = `<span class="prompt">${l.text}</span>`;
+      } else if (l.type === 'boot') {
+        p.className += ' out dim';
+        p.innerHTML = l.html;
       } else {
         p.className += ' out ' + (l.cls || '');
         p.textContent = l.text;
@@ -490,7 +471,12 @@
       if (l.type === 'out') p.className += ' out ' + (l.cls || '');
       container.appendChild(p);
 
-      if (l.type === 'cmd') {
+      if (l.type === 'boot') {
+        p.className += ' out dim';
+        p.innerHTML = l.html;
+        requestAnimationFrame(() => p.classList.add('done'));
+        i++; setTimeout(next, 160);
+      } else if (l.type === 'cmd') {
         const span = document.createElement('span');
         span.className = 'prompt';
         p.appendChild(span);
@@ -521,7 +507,7 @@
   if (reduceMotion) {
     renderStatic();
   } else {
-    setTimeout(typeSequence, 1500);
+    setTimeout(typeSequence, 350);
   }
 
   // animate htop meters when scrolled into view
